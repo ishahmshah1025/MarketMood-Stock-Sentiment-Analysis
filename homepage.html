@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #E5E7EB;
+        }
+        .nav-link.active {
+            color: black;
+            font-weight: 600;
+        }
+        .nav-link {
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: black;
+        }
+        .button.active {
+            background-color: black;
+            color: white;
+        }
+        .button {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .button:hover {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body class="p-8">
+    <div class="bg-white rounded-3xl p-6 shadow-lg">
+        <div class="flex justify-between items-center mb-6">
+            <div class="flex items-center space-x-4">
+                <div class="text-xl font-bold">UXBoost AI</div>
+                <nav class="flex space-x-4">
+                    <a class="nav-link text-gray-500 hover:text-black" href="#" onclick="setActiveNavLink(event)">Dashboard</a>
+                    <a class="nav-link text-black font-semibold active" href="#" onclick="setActiveNavLink(event)">Projects</a>
+                    <a class="nav-link text-gray-500 hover:text-black" href="#" onclick="setActiveNavLink(event)">Insights</a>
+                    <a class="nav-link text-gray-500 hover:text-black" href="#" onclick="setActiveNavLink(event)">History</a>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-search text-gray-500"></i>
+                <i class="fas fa-bell text-gray-500"></i>
+                <img alt="User profile picture" class="rounded-full w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/4773jm0eMmXYFaweHB8Hg2oyknXqDHfPxsgW4AZErfm8kdgOB.jpg" width="40"/>
+            </div>
+        </div>
+        <div class="grid grid-cols-3 gap-6">
+            <div class="bg-gray-50 p-6 rounded-2xl">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">Top Headlines</h2>
+                    <i class="fas fa-sync-alt text-gray-500 cursor-pointer" onclick="fetchHeadlines()"></i>
+                </div>
+                <ul id="headlines" class="space-y-2">
+                    <!-- Headlines will be inserted here -->
+                </ul>
+            </div>
+            <div class="col-span-2">
+                <div class="bg-gray-50 p-6 rounded-2xl mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold">Recent project</h2>
+                        <div class="flex space-x-2">
+                            <button class="button bg-black text-white px-4 py-2 rounded-full active" onclick="setActiveButton(event)">Standard view</button>
+                            <button class="button bg-gray-200 text-gray-500 px-4 py-2 rounded-full" onclick="setActiveButton(event)">Heatmap</button>
+                            <button class="button bg-gray-200 text-gray-500 px-4 py-2 rounded-full" onclick="setActiveButton(event)">Insights</button>
+                            <button class="button bg-gray-200 text-gray-500 px-4 py-2 rounded-full" onclick="setActiveButton(event)">Skeleton view</button>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-md">
+                        <img alt="Project image" class="w-full mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/ImVI4TfE3U2CSCC2qf6Zn9mKUMwKHHa8Se7S8wxuSnPWyOQnA.jpg" width="400"/>
+                        <h3 class="text-2xl font-semibold mb-2">Optimize, Outperform</h3>
+                        <p class="text-gray-500">Save time and money. Automated Inventory Management</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-6 rounded-2xl">
+                        <h2 class="text-lg font-semibold mb-4">AI reports</h2>
+                        <div class="flex justify-between items-center">
+                            <div class="text-center">
+                                <img alt="Competitors icon" class="mx-auto mb-2" height="60" src="https://storage.googleapis.com/a1aa/image/TIIFPoTP6V5JGJImL0TGLgRsnsw0giN0H0ZCiCgWO8OT2B6E.jpg" width="60"/>
+                                <p>Competitors</p>
+                            </div>
+                            <div class="text-center">
+                                <img alt="Task flow icon" class="mx-auto mb-2" height="60" src="https://storage.googleapis.com/a1aa/image/ChZzK7nGirZDNZ2t6kDzsyC02Inpk0322EzP1tW19JqT2B6E.jpg" width="60"/>
+                                <p>Task flow</p>
+                            </div>
+                            <div class="text-center">
+                                <img alt="User journey icon" class="mx-auto mb-2" height="60" src="https://storage.googleapis.com/a1aa/image/ftt4O7zfrLtXsUluBnbdPGV1zVzKSKHxMaDR59hGY59IZHoTA.jpg" width="60"/>
+                                <p>User journey</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl">
+                        <h2 class="text-lg font-semibold mb-4">Passing rate</h2>
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="text-center">
+                                <p class="text-2xl font-semibold">61%</p>
+                                <p class="text-gray-500">Complete</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-2xl font-semibold">17%</p>
+                                <p class="text-gray-500">Failed</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-2xl font-semibold">22%</p>
+                                <p class="text-gray-500">Partial</p>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="bg-green-500 h-2 rounded-l-full" style="width: 61%;"></div>
+                            <div class="bg-red-500 h-2" style="width: 17%;"></div>
+                            <div class="bg-orange-500 h-2 rounded-r-full" style="width: 22%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function setActiveNavLink(event) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-black', 'font-semibold', 'active');
+                link.classList.add('text-gray-500', 'hover:text-black');
+            });
+            event.currentTarget.classList.add('text-black', 'font-semibold', 'active');
+        }
+
+        function setActiveButton(event) {
+            document.querySelectorAll('.button').forEach(button => {
+                button.classList.remove('active');
+                button.classList.add('bg-gray-200', 'text-gray-500');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+        async function fetchHeadlines() {
+            const apiKey = '7f7204c712d600bd4bce433cd0fbc6b8'; // Replace with your GNews API key
+            const query = 'stock trends'; // Change this to whatever you want to search for
+            const url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(query)}&country=in&token=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                const headlines = data.articles.slice(0, 7);
+                const headlinesList = document.getElementById('headlines');
+                headlinesList.innerHTML = '';
+
+                headlines.forEach(article => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'flex justify-between items-center';
+                    listItem.innerHTML = `
+                        <span>${article.title}</span>
+                        <a href="${article.url}" target="_blank" class="text-blue-500">Read more</a>
+                    `;
+                    headlinesList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error('Error fetching headlines:', error);
+            }
+        }
+
+        // Fetch headlines when the page loads
+        window.onload = fetchHeadlines;
+    </script>
+</body>
+</html>
