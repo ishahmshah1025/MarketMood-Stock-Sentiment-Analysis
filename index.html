@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Sentiment Analysis</title>
+</head>
+<body>
+    <h1>Stock Sentiment Analysis</h1>
+    <form id="stock-form">
+        <input type="text" name="stock_name" placeholder="Enter Stock Name (e.g., AAPL)" required>
+        <button type="submit">Analyze</button>
+    </form>
+    <h2>Sentiment Analysis Results</h2>
+    <div id="results">
+        <img id="chart" src="" alt="Sentiment Pie Chart" style="display:none;">
+    </div>
+
+    <script>
+        document.getElementById('stock-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('/sentiment', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const chartImg = document.getElementById('chart');
+                chartImg.src = 'data:image/png;base64,' + data.chart;
+                chartImg.style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
