@@ -114,8 +114,12 @@
                     </div>
                     <div class="bg-gray-100 p-6 h-full border border-gray-300 shadow-lg">
                         <h2 class="text-lg font-semibold mb-4">Stock Price Prediction</h2>
-                        <img src="{{ image_path }}" alt="Apple Stock Price" class="h-full w-full object-cover">
+                
+                    
+                        <!-- Google Image (replace the link with the desired Google image URL) -->
+                        <img src="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2017/11/1862/1012/838c39f014d415fa1f6426ce17767160-04aa6a0d7b7a6510VgnVCM200000d6c1a8c0____.png?ve=1&tl=1" alt="Google Image" class="h-full w-full object-cover">
                     </div>
+                    
                 </div>
                 
                 
@@ -141,8 +145,8 @@
         }
 
         async function fetchHeadlines() {
-    const apiKey = '9eca8bc96b9e453496b85e2ced9b8dfe';  // Replace with your actual NewsAPI key
-    const query = 'stock trends';  // Adjust the query as needed
+    const apiKey = '9eca8bc96b9e453496b85e2ced9b8dfe';  
+    const query = 'stock trends';  
     const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&apiKey=${apiKey}`;
 
     try {
@@ -208,7 +212,6 @@ window.onload = async () => {
 };
 
 
-// Sample Chart.js setup (you can modify the data)
 const ctx = document.getElementById('stockChart').getContext('2d');
 const stockChart = new Chart(ctx, {
     type: 'line',
