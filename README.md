@@ -2,6 +2,13 @@
 # Overview:
 MarketMood is a comprehensive website that aims to analyze stock sentiment from various online platforms - taking information from trending news as well as social media sites, using natural language processing techniques. The project utilizes the VADER and FinBERT to classify sentiments as bullish, bearish or negative based on user discussions about stocks. The results are visualized through interactive charts, providing insights into market trends.
 
+# MarketMood:
+- Utilized newsapi key to get real-time updates on top stock related headlines
+- Live Top Stocks displayed from MoneyControl
+- Prediction graph analysis displayed for particular stocks
+- High accuracy prediction for desired stocks displayed (using LSTM model)
+- Sentiment Analysis carried out using VADER and FinBERT from Economic Times, Money Control, Reddit, Yahoo Finance, NewsAPI and more
+
 # Features:
 - Sentiment Analysis: Analyzes stock related news and discussions to gauge public sentiment.
 - Data Visualization: Present sentiment data in a user-friendly manner using pie and bar charts.
