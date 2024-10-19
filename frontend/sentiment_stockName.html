@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Sentiment Analysis</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        rel="stylesheet"
+    />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-white min-h-screen">
+    <!-- Navbar -->
+    <div class="navbar flex items-center justify-between px-8 py-4 bg-white shadow-lg">
+        <div class="flex items-center space-x-4">
+            <div class="text-2xl font-extrabold text-blue-700">MarketMood</div>
+            <nav class="flex space-x-6">
+                <a class="text-gray-600 hover:text-blue-700 transition duration-200" href="#">Home</a>
+                <a class="text-gray-800 font-semibold hover:text-blue-700 transition duration-200" href="#">Predict</a>
+                <a class="text-gray-600 hover:text-blue-700 transition duration-200" href="#">Analysis</a>
+            </nav>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-200">
+                <i class="fas fa-bell text-xl"></i> <!-- Notification Bell -->
+            </a>
+            <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-200">
+                <i class="fas fa-user-circle text-xl"></i> <!-- User Icon -->
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content text-center py-12">
+        <h1 class="text-5xl font-bold text-blue-700 mb-12">Stock Sentiment Analysis</h1> <!-- Increased spacing -->
+
+        <!-- Search Bar -->
+        <div class="search-container mx-auto mb-10">
+            <form id="searchForm" class="flex items-center justify-center" onsubmit="return displaySentimentAnalysis();">
+                <input type="text" id="stockInput" class="border-0 py-3 px-4 w-full md:w-1/3 lg:w-1/4 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-800 rounded-l-lg" placeholder="Enter stock name" required>
+                <button type="submit" class="bg-blue-600 text-white py-3 px-6 rounded-r-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Search</button>
+            </form>
+        </div>
+
+        <!-- Container for Sentiment Analysis -->
+        <div class="container flex justify-center space-x-8" id="sentimentContainer" style="display: none;">
+            <!-- Reddit Sentiment Analysis Box -->
+            <div class="box bg-white rounded-lg shadow-xl p-8 w-1/3 flex flex-col transition duration-300 transform hover:scale-105">
+                <h3 class="text-blue-600 text-2xl font-semibold mb-6">Reddit Sentiment Analysis</h3>
+                <div id="redditContent" class="flex-grow">
+                    <canvas id="redditChart"></canvas> <!-- Graph for Reddit analysis -->
+                </div>
+            </div>
+
+            <!-- Moneycontrol Sentiment Analysis Box -->
+            <div class="box bg-white rounded-lg shadow-xl p-8 w-1/3 flex flex-col transition duration-300 transform hover:scale-105">
+                <h3 class="text-blue-600 text-2xl font-semibold mb-6">Moneycontrol Sentiment Analysis</h3>
+                <div id="moneycontrolContent" class="flex-grow">
+                    <canvas id="moneycontrolChart"></canvas> <!-- Graph for Moneycontrol analysis -->
+                </div>
+            </div>
+
+            <!-- News API Sentiment Analysis Box -->
+            <div class="box bg-white rounded-lg shadow-xl p-8 w-1/3 flex flex-col transition duration-300 transform hover:scale-105">
+                <h3 class="text-blue-600 text-2xl font-semibold mb-6">News API Sentiment Analysis</h3>
+                <div id="newsContent" class="flex-grow">
+                    <canvas id="newsChart"></canvas> <!-- Graph for News API analysis -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function displaySentimentAnalysis() {
+            const stock = document.getElementById('stockInput').value;
+
+            // Display the sentiment container after search
+            document.getElementById('sentimentContainer').style.display = 'flex';
+
+            // Placeholder data for charts (replace this with real data from your backend)
+            const data = {
+                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                datasets: [
+                    {
+                        label: 'Positive',
+                        data: [30, 50, 70, 90],
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Negative',
+                        data: [20, 10, 40, 30],
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Neutral',
+                        data: [50, 40, 60, 70],
+                        backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                        borderColor: 'rgba(255, 206, 86, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            };
+
+            // Create charts for each sentiment box
+            new Chart(document.getElementById('redditChart'), {
+                type: 'bar',
+                data: data,
+                options: {
+                    title: {
+                        display: true,
+                        text: `Reddit Sentiment Analysis for ${stock}`
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('moneycontrolChart'), {
+                type: 'bar',
+                data: data,
+                options: {
+                    title: {
+                        display: true,
+                        text: `Moneycontrol Sentiment Analysis for ${stock}`
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('newsChart'), {
+                type: 'bar',
+                data: data,
+                options: {
+                    title: {
+                        display: true,
+                        text: `News API Sentiment Analysis for ${stock}`
+                    }
+                }
+            });
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>
