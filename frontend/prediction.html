@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Stock Prediction </title>
+    <title>Stock Prediction</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Inter", sans-serif; /* Use Inter font */
             background-color: #050505;
             color: #333;
             margin: 0;
@@ -28,6 +32,7 @@
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
+            margin-bottom: 20px; /* Increased spacing between chart boxes */
         }
         canvas {
             max-width: 100%;
@@ -38,10 +43,58 @@
             font-size: 0.9em;
             color: #777;
         }
+        /* Styling for search bar */
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        .search-input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 200px; /* Adjust width as needed */
+        }
+        .search-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
-<body>
-    <h1> Stock Price and P/E Ratio Analysis</h1>
+<body class="bg-black min-h-screen">
+    <!-- Navbar -->
+    <div class="navbar flex items-center justify-between px-8 py-4 bg-white shadow-lg">
+        <div class="flex items-center space-x-4">
+            <div class="text-2xl font-extrabold text-blue-700">MarketMood</div>
+            <nav class="flex space-x-6">
+                <a class="text-gray-600 hover:text-blue-700 transition duration-200" href="#">Home</a>
+                <a class="text-gray-800 font-semibold hover:text-blue-700 transition duration-200" href="#">Predict</a>
+                <a class="text-gray-600 hover:text-blue-700 transition duration-200" href="#">Analysis</a>
+            </nav>
+        </div>
+        <div class="search-container" >
+            <input type="text" class="search-input" placeholder="Search..." aria-label="Search">
+            <button class="search-button" >Search</button>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-200">
+                <i class="fas fa-bell text-xl"></i> <!-- Notification Bell -->
+            </a>
+            <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-200">
+                <i class="fas fa-user-circle text-xl"></i> <!-- User Icon -->
+            </a>
+        </div>
+    </div>
+
+    <h1>Apple Stock Price and P/E Ratio Analysis</h1>
     
     <div class="chart-container">
         <h2>Price vs Time</h2>
@@ -52,7 +105,6 @@
         <h2>P/E Ratio vs Time</h2>
         <canvas id="peChart"></canvas>
     </div>
-    
     
     <script>
         // Sample data for demonstration purposes
@@ -141,7 +193,7 @@
                 plugins: {
                     legend: {
                         display: true,
- position: 'top',
+                        position: 'top',
                     },
                     tooltip: {
                         backgroundColor: 'rgba(0, 0, 0, 0.7)',
