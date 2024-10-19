@@ -18,27 +18,29 @@
         }
         .navbar {
             height: 4rem;
-            background-color: white;
+            background-color: rgb(11, 11, 11);
             border-bottom: 1px solid #e5e7eb;
         }
     </style>
 </head>
-<body class="bg-white">
+<body style="background-color: black;">
     <!-- Navbar Section -->
-    <div class="navbar flex items-center justify-between px-8">
+    <div class="navbar flex items-center justify-between px-8 py-4 bg-white shadow-lg">
         <div class="flex items-center space-x-4">
-            <div class="text-xl font-bold">UXBoost AI</div>
-            <nav class="flex space-x-4">
-                <a class="nav-link text-gray-500 hover:text-black" href="#" onclick="setActiveNavLink(event)">Dashboard</a>
-                <a class="nav-link text-gray-500 hover:text-black" href="#" onclick="setActiveNavLink(event)">Projects</a>
-                <a class="nav-link text-gray-500 hover:text-black" href="#" onclick="setActiveNavLink(event)">Insights</a>
-                <a class="nav-link text-gray-500 hover:text-black" href="#" onclick="setActiveNavLink(event)">History</a>
+            <div class="text-2xl font-extrabold text-blue-700">MarketMood</div>
+            <nav class="flex space-x-6">
+                <a class="text-gray-600 hover:text-blue-700 transition duration-200" href="#">Home</a>
+                <a class="text-gray-800 font-semibold hover:text-blue-700 transition duration-200" href="#">Predict</a>
+                <a class="text-gray-600 hover:text-blue-700 transition duration-200" href="#">Analysis</a>
             </nav>
         </div>
         <div class="flex items-center space-x-4">
-            <i class="fas fa-search text-gray-500"></i>
-            <i class="fas fa-bell text-gray-500"></i>
-            <img alt="User profile picture" class="rounded-full w-10 h-10" height="40" src="https://storage.googleapis.com/a1aa/image/dLZfX416xfrYw0KXdszwLdAMS4W6H7XVnSFl6dTpD1WeejgOB.jpg" width="40" />
+            <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-200">
+                <i class="fas fa-bell text-xl"></i> <!-- Notification Bell -->
+            </a>
+            <a href="#" class="text-gray-600 hover:text-blue-700 transition duration-200">
+                <i class="fas fa-user-circle text-xl"></i> <!-- User Icon -->
+            </a>
         </div>
     </div>
 
@@ -46,7 +48,7 @@
     <div id="dashboard" class="p-8">
         <div class="grid grid-cols-3 gap-6 h-full">
             <!-- Trending Headlines Section -->
-            <div class="col-span-1 bg-gray-100 p-6 h-full border border-gray-300 shadow-lg">
+            <div class="col-span-1 bg-gray-300 p-6 h-full border border-gray-300 shadow-lg">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-semibold">Trending Headlines</h2>
                     <i class="fas fa-sync-alt text-gray-500 cursor-pointer" id="refresh-news" onclick="fetchHeadlines()"></i>
@@ -58,45 +60,39 @@
 
             <!-- Project and Stock Analysis Section -->
             <div class="col-span-2 grid grid-rows-2 gap-6">
-                <div class="bg-gray-100 p-6 h-full border border-gray-300 shadow-lg">
+                <div class="bg-gray-300 p-6 h-full border border-gray-300 shadow-lg">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-lg font-semibold">Recent Project</h2>
-                        <div class="flex space-x-2">
-                            <button class="button bg-black text-white py-1 px-3 rounded-full active" onclick="setActiveButton(event)">Standard view</button>
-                            <button class="button bg-gray-200 text-gray-500 py-1 px-3 rounded-full" onclick="setActiveButton(event)">Heatmap</button>
-                            <button class="button bg-gray-200 text-gray-500 py-1 px-3 rounded-full" onclick="setActiveButton(event)">Insights</button>
-                            <button class="button bg-gray-200 text-gray-500 py-1 px-3 rounded-full" onclick="setActiveButton(event)">Skeleton view</button>
-                        </div>
                         <i class="fas fa-ellipsis-h text-gray-500"></i>
                     </div>
                     <div class="flex justify-between items-center mb-4">
-                        <img alt="Project image" class="w-1/2" height="200" src="C:\Users\manis\OneDrive\Desktop\mindspark\stocksent.jpg" width="600" />
-                        <div class="w-1/2 pl-6">
+                        <img src="https://cdn-aejmc.nitrocdn.com/IfFtXtYYsxfVXtLJpTkZNIcpfONlJTBm/assets/images/optimized/rev-4da0a7b/www.shyamadvisory.com/wp-content/uploads/2024/03/collage-finance-banner-concept-1200x594.jpg" width="600" />
+                        <div class="mt-4" style="position: relative; left: -50px; top: 10px;">
                             <h3 class="text-xl font-semibold">Sentiment Analysis</h3>
                             <p class="text-gray-500 mt-2">The Future of Technology</p>
                             <div class="mt-4">
-                                <input class="w-full p-2 border border-gray-300 rounded-lg" id="stock-search" placeholder="Search for a stock..." type="text" />
-                                <button class="mt-2 bg-blue-500 text-white py-2 px-4 rounded-full" onclick="analyzeStock()">Analyze</button>
+                                <div class="text-center mt-10">
+                                    <a href="/index2" class="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-200">Get Started</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="flex justify-between items-center">
                         <div class="text-center">
-                            <p class="text-green-500 font-semibold">Transfer flow</p>
-                            <p class="text-3xl font-bold">87%</p>
+                            <p class="text-1xl font-bold">Bullish</p>
+                            <p class="text-green-500 font-semibold">Stocks Perform Positively</p>
                         </div>
                         <div class="text-center">
-                            <p class="text-orange-500 font-semibold">Request flow</p>
-                            <p class="text-3xl font-bold">52%</p>
+                            <p class="text-1xl font-bold">Bearish</p>
+                            <p class="text-orange-500 font-semibold">Stocks Perform Negatively</p>
                         </div>
                         <div class="text-center">
-                            <p class="text-gray-500">QR code for requesting funds is valid for only 1 minute.</p>
+                            <p class="text-gray-500">Visualize the sentiment scores using tabular and graphical methods</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-6 h-full">
-                    <div class="bg-gray-100 p-6 h-full border border-gray-300 shadow-lg">
+                    <div class="bg-gray-300 p-6 h-full border border-gray-300 shadow-lg">
                         <h2 class="text-lg font-semibold mb-4">Top Stock Picks</h2>
                         <div id="stocks-list" class="space-y-4 h-full overflow-auto">
                             {% if top_stocks is not none %}
@@ -112,17 +108,15 @@
                             {% endif %}
                         </div>
                     </div>
-                    <div class="bg-gray-100 p-6 h-full border border-gray-300 shadow-lg">
+                    <div class="bg-gray-300 p-6 h-full border border-gray-300 shadow-lg">
                         <h2 class="text-lg font-semibold mb-4">Stock Price Prediction</h2>
-                
-                    
-                        <!-- Google Image (replace the link with the desired Google image URL) -->
-                        <img src="https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2017/11/1862/1012/838c39f014d415fa1f6426ce17767160-04aa6a0d7b7a6510VgnVCM200000d6c1a8c0____.png?ve=1&tl=1" alt="Google Image" class="h-full w-full object-cover">
+                        <a href="/prediction"> <!-- Wrap the image with an anchor tag -->
+                            <img src="https://miro.medium.com/max/1640/1*DUZJjwz0U6584oUVcgtHEA.png" alt="Stock Price Prediction" class="cursor-pointer">
+                        </a>
                     </div>
                     
+                    </div>
                 </div>
-                
-                
             </div>
         </div>
     </div>
@@ -145,97 +139,95 @@
         }
 
         async function fetchHeadlines() {
-    const apiKey = '9eca8bc96b9e453496b85e2ced9b8dfe';  
-    const query = 'stock trends';  
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&apiKey=${apiKey}`;
+            const apiKey = '9eca8bc96b9e453496b85e2ced9b8dfe';  
+            const query = 'stock trends';  
+            const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&sortBy=publishedAt&apiKey=${apiKey}`;
 
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);  // Log the response to check if articles are returned
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                console.log(data);  // Log the response to check if articles are returned
 
-        const headlinesList = document.getElementById('headlines');
-        headlinesList.innerHTML = '';  // Clear existing headlines
+                const headlinesList = document.getElementById('headlines');
+                headlinesList.innerHTML = '';  // Clear existing headlines
 
-        // Check if articles exist and populate the list
-        if (data.articles && data.articles.length > 0) {
-            data.articles.slice(0, 7).forEach(article => {
-                const listItem = document.createElement('li');
-                listItem.className = 'flex justify-between items-center';
-                listItem.innerHTML = `
-                    <span>${article.title}</span>
-                    <a href="${article.url}" target="_blank" class="text-blue-500">Read more</a>
-                `;
-                headlinesList.appendChild(listItem);
-            });
-        } else {
-            headlinesList.innerHTML = '<li class="text-red-500">No headlines available.</li>';
-        }
-    } catch (error) {
-        console.error('Error fetching headlines:', error);
-    }
-}
-
-// This function fetches and displays the top trending stocks.
-async function displayTopStocks() {
-    try {
-        const response = await fetch('/get_top_stocks');
-        const topStocks = await response.json();
-
-        const stockListDiv = document.getElementById('stock-list');
-        stockListDiv.innerHTML = '';  // Clear existing content
-
-        if (topStocks.length > 0) {
-            topStocks.forEach(stock => {
-                const stockItem = document.createElement('div');
-                stockItem.className = 'stock-item';
-                stockItem.innerHTML = `
-                    <span>${stock.Symbol}</span>
-                    <span>Last Price: $${stock['Last Price'].toFixed(2)}</span>
-                    <span>Change: $${stock.Change.toFixed(2)} (${stock['% Change'].toFixed(2)}%)</span>
-                    <span>Volume: ${stock.Volume}</span>
-                `;
-                stockListDiv.appendChild(stockItem);
-            });
-        } else {
-            stockListDiv.innerHTML = '<p>No trending stocks available.</p>';
-        }
-    } catch (error) {
-        console.error('Error fetching top stocks:', error);
-    }
-}
-
-// This function fetches and displays headlines on page load
-window.onload = async () => {
-    await fetchHeadlines();
-    await displayTopStocks();
-};
-
-
-const ctx = document.getElementById('stockChart').getContext('2d');
-const stockChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-        datasets: [{
-            label: 'Stock Price',
-            data: [120, 150, 180, 130, 170, 160, 200],
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderWidth: 1,
-            fill: true,
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
+                // Check if articles exist and populate the list
+                if (data.articles && data.articles.length > 0) {
+                    data.articles.slice(0, 15).forEach(article => {  // Fetching 15 articles
+                        const listItem = document.createElement('li');
+                        listItem.className = 'flex justify-between items-center';
+                        listItem.innerHTML = `
+                            <span>${article.title}</span>
+                            <a href="${article.url}" target="_blank" class="text-blue-500">Read</a>
+                        `;
+                        headlinesList.appendChild(listItem);
+                    });
+                } else {
+                    headlinesList.innerHTML = '<li class="text-red-500">No headlines available.</li>';
+                }
+            } catch (error) {
+                console.error('Error fetching headlines:', error);
             }
         }
-    }
-});
 
+        // This function fetches and displays the top trending stocks.
+        async function displayTopStocks() {
+            try {
+                const response = await fetch('/get_top_stocks');
+                const topStocks = await response.json();
+
+                const stockListDiv = document.getElementById('stocks-list'); // Updated ID here
+                stockListDiv.innerHTML = '';  // Clear existing content
+
+                if (topStocks.length > 0) {
+                    topStocks.forEach(stock => {
+                        const stockItem = document.createElement('div');
+                        stockItem.className = 'stock-item';
+                        stockItem.innerHTML = `
+                            <span>${stock.Symbol}</span>
+                            <span>Last Price: $${stock['Last Price'].toFixed(2)}</span>
+                            <span>Change: $${stock.Change.toFixed(2)} (${stock['% Change'].toFixed(2)}%)</span>
+                            <span>Volume: ${stock.Volume}</span>
+                        `;
+                        stockListDiv.appendChild(stockItem);
+                    });
+                } else {
+                    stockListDiv.innerHTML = '<p>No trending stocks available.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching top stocks:', error);
+            }
+        }
+
+        // This function fetches and displays headlines on page load
+        window.onload = async () => {
+            await fetchHeadlines();
+            await displayTopStocks();
+        };
+
+        const ctx = document.getElementById('stockChart').getContext('2d');
+        const stockChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                datasets: [{
+                    label: 'Stock Price',
+                    data: [120, 150, 180, 130, 170, 160, 200],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 1,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html>
